@@ -4,14 +4,8 @@ const routes = require('./routes');
 const app = express();
 
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://hanyahesham:hanya123@cluster0.ca44f.mongodb.net/NodeProj?";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-}); 
+const { MONGODB_URI } = process.env; 
+mongoose.connect(MONGODB_URI, { useUnifiedTopology: true });
 
 
 app.use(express.json()); //express json middleware
@@ -39,6 +33,6 @@ app.use((err, req, res, next)=>{
 });
 
 const { PORT=3000 } = process.env;
-app.listen(3000, ()=>{
+app.listen(PORT, ()=>{
     console.log('App is ready on:', PORT);
 })
