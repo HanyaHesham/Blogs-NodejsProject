@@ -49,7 +49,7 @@ router.get('/', async (req, res, next) => {
 
 //edit user
 router.patch('/',authMiddleware ,async (req, res, next) => {
-  const { params: { id }, body } = req;
+  const { user: { id }, body } = req;
   try {
     const user = await editById(id, body);
     res.json(user);
@@ -60,7 +60,7 @@ router.patch('/',authMiddleware ,async (req, res, next) => {
 
 //delete user
   router.delete('/', authMiddleware, async (req, res, next)=>{
-    const { params: { id } } = req;
+    const { user: { id } } = req;
     try{
         const user = await deleteById(id);
         res.json(user)
