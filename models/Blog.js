@@ -6,20 +6,21 @@ const blogSchema = new Schema({
     title:{
         type: String,
         maxlength: 256,
-        required: true
+        required: true,
     },
     body:{
         type: String,
         maxlength: 2000,
+        required:true,
     },
     tags: [String],
-    createdAt:Date,
-    updatedAt: Date,
 
     author:{
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    comment:[string],
+    
     photo: String,
     createdAt: {
         type: Date,

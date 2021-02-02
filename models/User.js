@@ -17,7 +17,14 @@ const userSchema = new Schema({
     firstName:{
         type: String,
         maxlength: 140,
-        required: true,
+    },
+    lastName:{
+      type: String,
+      maxlength: 140,
+    },
+    Email:{
+      type:String,
+      required:true,
     },
     followers:[{
        type: Schema.Types.ObjectId,
