@@ -10,28 +10,34 @@ const userSchema = new Schema({
         required:true,
         maxlength: 140,
     },
+
     password:{
         type: String,
         required:true,
     },
+
     firstName:{
         type: String,
         maxlength: 140,
     },
+
     lastName:{
       type: String,
       maxlength: 140,
     },
+
     Email:{
       type:String,
       required:true,
     },
+
     followers:[{
        type: Schema.Types.ObjectId,
         ref: 'User'
       }],
-      following:[{ 
-        type: Schema.Types.ObjectId, 
+
+    following:[{ 
+       type: Schema.Types.ObjectId, 
         ref: 'User'
       }],
     dob: Date,
