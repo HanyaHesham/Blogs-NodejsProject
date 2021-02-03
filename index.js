@@ -4,11 +4,11 @@ const routes = require('./routes');
 const app = express();
 
 const { MONGODB_URI } = process.env; 
-mongoose.connect(MONGODB_URI, { useUnifiedTopology: true });
+mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true,useNewUrlParser: true, useFindAndModify: false});
 
 
 app.use(express.json()); //express json middleware
-
+app.use(express.urlencoded({extended:true}));
 app.use('/', routes); //setup routes
 
 
