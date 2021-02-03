@@ -5,7 +5,7 @@ const authMiddleware = require('../middlewares/auth');
 const router = express.Router();
 
 //register new user
-router.post('/', async (req, res, next)=>{
+router.post('/add', async (req, res, next)=>{
     const { body } = req;
     try{
         const user = await create(body);
@@ -48,7 +48,7 @@ router.get('/', async (req, res, next) => {
 });
 
 //edit user
-router.patch('/', authMiddleware,async (req, res, next) => {
+router.patch('/edit', authMiddleware,async (req, res, next) => {
   const { user: { id }, body } = req;
   try {
     const user = await editById(id, body);
@@ -60,7 +60,7 @@ router.patch('/', authMiddleware,async (req, res, next) => {
 
 //delete user
 
-  router.delete('/', authMiddleware, async (req, res, next)=>{
+  router.delete('/delete', authMiddleware, async (req, res, next)=>{
 
     const { user: { id } } = req;
     try{
