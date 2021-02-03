@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 const upload= multer ({ storage: storage });
 
 //create new blog
-router.post('/',upload.single('photo') ,async (req, res, next)=>{
+router.post('/add',upload.single('photo') ,async (req, res, next)=>{
     const { body, user: { id } } = req;
     const _file = req.file.filename;
     try{

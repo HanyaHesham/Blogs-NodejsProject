@@ -48,11 +48,7 @@ router.get('/', async (req, res, next) => {
 });
 
 //edit user
-<<<<<<< HEAD
-router.patch('/',authMiddleware ,async (req, res, next) => {
-=======
 router.patch('/', authMiddleware,async (req, res, next) => {
->>>>>>> e84c96206a227771b1c1dc2a6618cd890e45d935
   const { user: { id }, body } = req;
   try {
     const user = await editById(id, body);
@@ -63,11 +59,9 @@ router.patch('/', authMiddleware,async (req, res, next) => {
 });
 
 //delete user
-<<<<<<< HEAD
+
   router.delete('/', authMiddleware, async (req, res, next)=>{
-=======
-  router.delete('/', authMiddleware,async (req, res, next)=>{
->>>>>>> e84c96206a227771b1c1dc2a6618cd890e45d935
+
     const { user: { id } } = req;
     try{
         const user = await deleteById(id);
