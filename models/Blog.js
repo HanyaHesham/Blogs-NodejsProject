@@ -19,7 +19,7 @@ const blogSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    comment:[string],
+    comment:[String],
     
     photo: String,
     createdAt: {
