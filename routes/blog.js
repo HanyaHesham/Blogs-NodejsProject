@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, getMyblog, getAll, getById, editById, deleteById, getByTitle, getByTag} = require('../controllers/blog');
+const { create, getMyblog, getAll, getById, editById, deleteById, getByTitle, getByTag, createBlog} = require('../controllers/blog');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
@@ -15,12 +15,23 @@ const storage = multer.diskStorage({
 });
 const upload= multer ({ storage: storage });
 
-//create new blog
-router.post('/add',upload.single('photo') ,async (req, res, next)=>{
+//create new blog with photo
+router.post('/addphoto',upload.single('photo') ,async (req, res, next)=>{
     const { body, user: { id } } = req;
     const _file = req.file.filename;
     try{
         const blog = await create({ ...body, photo:_file ,author: id });
+        res.json(blog);
+    } catch(e){
+        next (e); //sending error handler
+    } 
+});
+
+//create new blog without photo
+router.post('/addblog', async (req, res, next)=>{
+    const { body, user: { id } } = req;
+    try{
+        const blog = await createBlog({ ...body, photo:_file ,author: id });
         res.json(blog);
     } catch(e){
         next (e); //sending error handler

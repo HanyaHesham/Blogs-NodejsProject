@@ -4,6 +4,9 @@ const create = (blog)=>{
    return Blog.create(blog);
 };
 
+const createBlog = (blog) => Blog.create(blog);
+
+
 const getMyblog = (query) => {
     return Blog.find(query).exec();
 }
@@ -35,7 +38,8 @@ const getByTag=(tags) =>{
 
 
 module.exports = {
-    create, 
+    create,
+    createBlog, 
     getMyblog,
     getAll,
     getById,
