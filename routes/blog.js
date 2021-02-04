@@ -31,7 +31,7 @@ router.post('/addphoto',upload.single('photo') ,async (req, res, next)=>{
 router.post('/addblog', async (req, res, next)=>{
     const { body, user: { id } } = req;
     try{
-        const blog = await createBlog({ ...body, photo:_file ,author: id });
+        const blog = await createBlog({ ...body, author: id });
         res.json(blog);
     } catch(e){
         next (e); //sending error handler
