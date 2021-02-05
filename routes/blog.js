@@ -19,26 +19,23 @@ const upload= multer ({ storage: storage });
 router.post('/addphoto',upload.single('photo') ,async (req, res, next)=>{
     const { body, user: { id } } = req;
     const _file = req.file.filename;
+    const file=req.file;
+    if(file){
     try{
         const blog = await create({ ...body, photo:_file ,author: id });
         res.json(blog);
     } catch(e){
         next (e); //sending error handler
     } 
+}else{
+        try{
+            const blog = await create({ ...body ,author: id });
+            res.json(blog);
+        } catch(e){
+            next (e); //sending error handler
+        }  
+}
 });
-
-//create new blog without photo
-router.post('/addblog', async (req, res, next)=>{
-    const { body, user: { id } } = req;
-    try{
-        const blog = await createBlog({ ...body, author: id });
-        res.json(blog);
-    } catch(e){
-        next (e); //sending error handler
-    } 
-});
-
-
 
 //get user blog only
 router.get('/getblog', async (req, res, next)=>{
