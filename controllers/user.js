@@ -27,9 +27,6 @@ const  login = async ({ username, password }) => {
       return { ...user.toJSON(), token };
     };
 
-//  const logout = (id) => {
-    
-//     }
 
 const getAll = () => {
     return User.find({}).exec();

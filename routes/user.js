@@ -36,14 +36,7 @@ router.post('/login', async (req, res, next) => {
   //     next(e);
   //   }
   // });
-  router.get("/logout", authMiddleware, (req, res)=>{
-    User.findById(req.user.id).then((rUser)=>{
-      rUser.online = false;
-      rUser.save();
-      });
-    req.logout();
-    res.redirect("/");
-  });
+
 
   //get all users
 router.get('/', async (req, res, next) => {
