@@ -20,7 +20,8 @@ router.post('/addphoto',upload.single('photo') ,async (req, res, next)=>{
     const { body, user: { id } } = req;
     const _file = req.file.filename;
     const file=req.file;
-    if(file){
+  
+    if(_file){
     try{
         const blog = await create({ ...body, photo:_file ,author: id });
         res.json(blog);
