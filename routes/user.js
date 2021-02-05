@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, login, getAll, getById, editById, deleteById, pushfollowID,pullfollowID} = require('../controllers/user');
+const { create, login, logout ,getAll, getById, editById, deleteById, pushfollowID,pullfollowID} = require('../controllers/user');
 const authMiddleware = require('../middlewares/auth');
 
 const router = express.Router();
@@ -24,6 +24,25 @@ router.post('/login', async (req, res, next) => {
     } catch (e) {
       next(e);
     }
+  });
+
+  //user logout
+  // router.get('/logout',authMiddleware, async (req, res, next) => {
+  //   //const { user: { id } } = req;
+  //   try {
+  //     const user = await logout();
+  //     res.json(user);
+  //   } catch (e) {
+  //     next(e);
+  //   }
+  // });
+  router.get("/logout", authMiddleware, (req, res)=>{
+    User.findById(req.user.id).then((rUser)=>{
+      rUser.online = false;
+      rUser.save();
+      });
+    req.logout();
+    res.redirect("/");
   });
 
   //get all users
@@ -70,6 +89,8 @@ router.patch('/edit', authMiddleware,async (req, res, next) => {
         next (e); //sending error handler
     }
 });
+
+
 
 //follow user
 router.post('/follow/:fid',authMiddleware ,async(req, res, next)=>{

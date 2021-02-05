@@ -27,6 +27,10 @@ const  login = async ({ username, password }) => {
       return { ...user.toJSON(), token };
     };
 
+//  const logout = (id) => {
+    
+//     }
+
 const getAll = () => {
     return User.find({}).exec();
 }
@@ -63,6 +67,7 @@ const pullfollowID = (id, targetId) =>{
 module.exports ={
     create,
     login,
+    logout,
     getAll,
     getById,
     editById,
