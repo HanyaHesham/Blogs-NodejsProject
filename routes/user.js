@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, login, logout ,getAll, getById, editById, deleteById, pushfollowID,pullfollowID} = require('../controllers/user');
+const { create, login, getAll, getById, editById, deleteById, pushfollowID,pullfollowID} = require('../controllers/user');
 const authMiddleware = require('../middlewares/auth');
 
 const router = express.Router();
@@ -25,18 +25,6 @@ router.post('/login', async (req, res, next) => {
       next(e);
     }
   });
-
-  //user logout
-  // router.get('/logout',authMiddleware, async (req, res, next) => {
-  //   //const { user: { id } } = req;
-  //   try {
-  //     const user = await logout();
-  //     res.json(user);
-  //   } catch (e) {
-  //     next(e);
-  //   }
-  // });
-
 
   //get all users
 router.get('/', async (req, res, next) => {

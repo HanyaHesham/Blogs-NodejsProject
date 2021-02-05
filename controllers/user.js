@@ -64,7 +64,6 @@ const pullfollowID = (id, targetId) =>{
 module.exports ={
     create,
     login,
-    logout,
     getAll,
     getById,
     editById,
