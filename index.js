@@ -11,8 +11,9 @@ mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true,
 
 app.use(express.json()); //express json middleware
 app.use(express.urlencoded({extended:true}));
-app.use('/', routes); //setup routes
 app.use(cors());
+app.use('/', routes); //setup routes
+
 
 app.use('*', (req, res, next) => {            //notfound middleware
     res.status(404).json({err: 'Not_found'});    
