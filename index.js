@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose= require('mongoose');
 const routes = require('./routes');
+const cors = require('cors');
 const app = express();
+
 
 const { MONGODB_URI } = process.env; 
 mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true,useNewUrlParser: true, useFindAndModify: false});
@@ -10,7 +12,7 @@ mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true,
 app.use(express.json()); //express json middleware
 app.use(express.urlencoded({extended:true}));
 app.use('/', routes); //setup routes
-
+app.use(cors());
 
 app.use('*', (req, res, next) => {            //notfound middleware
     res.status(404).json({err: 'Not_found'});    
