@@ -36,10 +36,10 @@ const getByTag=(tags) =>{
     return Blog.find({tags}).exec();
 }
 
-const like = (id, lid) => Blog.findByIdAndUpdate( lid, { $push: { likes:id } },{ new: true, useFindAndModify: false });
+const like = (id, lid) => Blog.findByIdAndUpdate( lid, { $push: { likes:id } },{ new: true, useFindAndModify: false }).exec();
 
 const unlike = (id, lid) => {
-    Blog.findByIdAndUpdate( lid, { $pull: { unlikes:id } },{ new: true, useFindAndModify: false });
+    Blog.findByIdAndUpdate( lid, { $pull: { unlikes:id } },{ new: true, useFindAndModify: false }).exec();
     return {"status":"unliked"};
 }
 
