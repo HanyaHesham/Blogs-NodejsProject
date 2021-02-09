@@ -39,7 +39,7 @@ const getByTag=(tags) =>{
 const like = (id, lid) => Blog.findByIdAndUpdate( lid, { $push: { likes:id } },{ new: true, useFindAndModify: false }).exec();
 
 const unlike = (id, lid) => {
-    Blog.findByIdAndUpdate( lid, { $pull: { unlikes:id } },{ new: true, useFindAndModify: false }).exec();
+    Blog.findByIdAndUpdate( lid, { $pull: { likes:id } },{ new: true, useFindAndModify: false }).exec();
     return {"status":"unliked"};
 }
 
