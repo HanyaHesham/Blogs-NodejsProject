@@ -38,7 +38,10 @@ const getByTag=(tags) =>{
 
 const like = (id, lid) => Blog.findByIdAndUpdate( lid, { $push: { likes:id } },{ new: true, useFindAndModify: false });
 
-const unlike = (id, lid) => Blog.findByIdAndUpdate( lid, { $pull: { unlikes:id } },{ new: true, useFindAndModify: false });
+const unlike = (id, lid) => {
+    Blog.findByIdAndUpdate( lid, { $pull: { unlikes:id } },{ new: true, useFindAndModify: false });
+    return {"status":"unliked"};
+}
 
 
 module.exports = {
