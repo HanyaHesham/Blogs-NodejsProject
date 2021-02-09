@@ -43,9 +43,7 @@ const unlike = (id, lid) => {
     return {"status":"unliked"};
 }
 
-const addComment=(body, id, blogId) =>{
-    return Blog.create(Comment);
-}
+const addComment=(body, id, blogId) =>Blog.findByIdAndUpdate(body, id,{$push:{comment:blogId}},{ new: true, useFindAndModify: false }).exec();
 
 
 module.exports = {
