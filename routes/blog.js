@@ -145,7 +145,7 @@ router.post('/comment/:blogId', async(req, res, nexy)=>{
     const {body, user: { id }, params:{ blogId }} = req;
     try{
         const comment = await addComment(body, id, blogId);
-        res.json({"Response": "Comment Added!", comment: comment});
+        res.json(comment);
     } catch (e) {
         next(e);
     }
