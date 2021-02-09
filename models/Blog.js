@@ -29,7 +29,11 @@ const blogSchema = new Schema({
     updatedAt: {
         type:Date,
         default: Date.now(),
-    }
+    },
+    likes:[{
+        type: Schema.Types.ObjectId,
+         ref: 'User'
+       }],
 });
  const blogModel = mongoose.model('Blog', blogSchema);
  module.exports = blogModel;

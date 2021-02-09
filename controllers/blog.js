@@ -36,6 +36,8 @@ const getByTag=(tags) =>{
     return Blog.find({tags}).exec();
 }
 
+const like = (id, lid) => Blog.findByIdAndUpdate( lid, { $push: { likes:id } },{ new: true, useFindAndModify: false });
+
 
 module.exports = {
     create,
@@ -47,4 +49,5 @@ module.exports = {
     deleteById,
     getByTitle,
     getByTag,
+    like
 }
