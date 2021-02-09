@@ -4,7 +4,9 @@ const create = (blog)=>{
    return Blog.create(blog);
 };
 
-const createBlog = (blog) => Blog.create(blog);
+const createBlog = (blog) =>{
+    return  Blog.create(blog);
+}
 
 
 const getMyblog = (query) => {
