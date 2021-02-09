@@ -43,6 +43,10 @@ const unlike = (id, lid) => {
     return {"status":"unliked"};
 }
 
+const addComment=(body, id, blogId) =>{
+    return Blog.create(Comment);
+}
+
 
 module.exports = {
     create,
@@ -55,5 +59,6 @@ module.exports = {
     getByTitle,
     getByTag,
     like,
-    unlike
+    unlike,
+    addComment
 }
