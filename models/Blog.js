@@ -34,10 +34,6 @@ const blogSchema = new Schema({
         type: Schema.Types.ObjectId,
          ref: 'User'
        }],
-    // unlikes:[{
-    //     type: Schema.Types.ObjectId,
-    //      ref: 'User'
-    //    }],
 });
  const blogModel = mongoose.model('Blog', blogSchema);
  module.exports = blogModel;
