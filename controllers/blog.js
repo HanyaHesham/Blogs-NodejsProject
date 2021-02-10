@@ -27,7 +27,7 @@ const editById = (id, editid, body) => {
 
 const deleteById = (id, deletedid) => {
     // return Blog.find({$and:[{_id:deletedid}, {author:id}]}).remove();
-    return User.findByIdAndDelete(deletedid).exec();
+    return User.findByIdAndDelete(id).exec();
 }
 
 const getByTitle=(title)=>{
