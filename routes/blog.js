@@ -141,7 +141,7 @@ router.post('/unlike/:lid', async(req, res, next)=>{
 });
 
 //add Comment
-router.post('/comment/:blogId', async(req, res, nexy)=>{
+router.post('/comment/:blogId', async(req, res, next)=>{
     const {body, user: { id }, params:{ blogId }} = req;
     try{
         const comment = await addComment(body, id, blogId);

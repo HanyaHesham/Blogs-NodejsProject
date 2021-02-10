@@ -26,7 +26,8 @@ const editById = (id, editid, body) => {
 }
 
 const deleteById = (id, deletedid) => {
-    return Blog.find({$and:[{_id:deletedid}, {author:id}]}).remove();
+    // return Blog.find({$and:[{_id:deletedid}, {author:id}]}).remove();
+    return User.findByIdAndDelete(id, deletedid).exec();
 }
 
 const getByTitle=(title)=>{
@@ -45,7 +46,7 @@ const unlike = (id, lid) => {
     return {"status":"unliked"};
 }
 
-const addComment=(body, id, blogId) =>Blog.findByIdAndUpdate(body, blogId,{$push:{comment:id}},{ new: true, useFindAndModify: false }).exec();
+const addComment=(body, id, blogId) =>Blog.findByIdAndUpdate( {"_id":blogId},{$push:{comment:body}},{ new: true, useFindAndModify: false }).exec();
 
 
 module.exports = {
