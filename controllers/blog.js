@@ -4,9 +4,9 @@ const uploadImg = (blog)=>{
     return Blog.create(blog);
 }
 
-const create = (blog)=>{
-   return Blog.create(blog);
-};
+// const create = (blog)=>{
+//    return Blog.create(blog);
+// };
 
 const createBlog = (blog) =>{
     return  Blog.create(blog);
@@ -52,13 +52,10 @@ const unlike = (id, lid) => {
 
 // const addComment=(body, id, blogId) =>Blog.updateOne( {_id : blogId},{ $addToSet: {comments: { commentId: author, comment: comment } } },{ new: true, useFindAndModify: false }).exec();
 
-const addComment = (body)=>{
-    return Blog.create(body);
-}
+const addComment = (id,body) =>Blog.updateOne({​​​​_id:id}​​​​,{​​​​$addToSet:body}​​​​,{​​​​new:true}​​​​).exec()
 
 module.exports = {
     uploadImg,
-    create,
     createBlog, 
     getMyblog,
     getAll,

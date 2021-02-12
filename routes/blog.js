@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, getMyblog, getAll, getById, editById, deleteById, getByTitle, getByTag, createBlog,like, unlike, addComment,uploadImg} = require('../controllers/blog');
+const { getMyblog, getAll, getById, editById, deleteById, getByTitle, getByTag, createBlog,like, unlike, addComment,uploadImg} = require('../controllers/blog');
 const router = express.Router();
 //const multer = require('multer');
 //const path = require('path');
@@ -161,25 +161,25 @@ router.post('/unlike/:lid', async(req, res, next)=>{
 });
 
 //add Comment
-// router.post('/comment/:blogId', async(req, res, next)=>{
-//     const {body, user: { id }, params:{ blogId }} = req;
-//     try{
-//         const comment = await addComment(body, id, blogId);
-//         res.json(comment);
-//     } catch (e) {
-//         next(e);
-//     }
-// });
-
-router.post('/comment', async (req, res, next) => {
-    const { body} = req;
-
-    try {
-        const comment = await addComment(body);
+router.post('/comment/:id', async(req, res, next)=>{
+    const {body, params:{ id }} = req;
+    try{
+        const comment = await addComment(id, body);
         res.json(comment);
     } catch (e) {
         next(e);
     }
 });
+
+// router.post('/comment', async (req, res, next) => {
+//     const { body} = req;
+
+//     try {
+//         const comment = await addComment(body);
+//         res.json(comment);
+//     } catch (e) {
+//         next(e);
+//     }
+// });
 
 module.exports = router;
