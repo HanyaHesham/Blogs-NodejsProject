@@ -9,7 +9,7 @@ const multer = require('../utils/multer');
 const path = require('path');
 
 router.post('/addimg', upload.single('photo'), async(req, res, next)=>{
-    const { body, user: { id } } = req;
+    // const { body, user: { id } } = req;
     try{
         //upload image to cloudinary
         const result = await cloudinary.uploader.upload(req.file.path);
