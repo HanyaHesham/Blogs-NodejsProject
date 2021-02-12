@@ -10,20 +10,13 @@ const upload = require('../utils/multer');
 
 
 router.post('/addimg', upload.single('photo'), async(req, res, next)=>{
-    // const { body, user: { id } } = req;
+     const { body, user: { id } } = req;
     try{
         //upload image to cloudinary
         const result = await cloudinary.uploader.upload(req.file.path);
  
         //create new blog
         const blog = await uploadImg({...body, tags: tags, photo: result.secure_url, cloudinary_id: result.public_id, author:id});
-        // let blog = new blog({
-        //     tags: tags,
-        //     photo: result.secure_url,
-        //     cloudinary_id: result.public_id,
-        //     author:id
-        // })
-       //await blog.save();
         res.json(blog);
     }catch(e){
         next (e);
