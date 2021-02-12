@@ -4,9 +4,9 @@ const router = express.Router();
 //const multer = require('multer');
 
 const cloudinary = require('../utils/cloudinary');
-const multer = require('../utils/multer');
+const upload = require('../utils/multer');
 
-const path = require('path');
+//const path = require('path');
 
 router.post('/addimg', upload.single('photo'), async(req, res, next)=>{
     // const { body, user: { id } } = req;
