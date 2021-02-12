@@ -1,6 +1,6 @@
 const Blog = require('../models/Blog');
 
-const upload = (blog)=>{
+const uploadImg = (blog)=>{
     return Blog.create(blog);
 }
 
@@ -57,7 +57,7 @@ const addComment = (body)=>{
 }
 
 module.exports = {
-    upload,
+    uploadImg,
     create,
     createBlog, 
     getMyblog,
