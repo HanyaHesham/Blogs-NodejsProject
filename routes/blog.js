@@ -1,12 +1,13 @@
 const express = require('express');
-const { create, getMyblog, getAll, getById, editById, deleteById, getByTitle, getByTag, createBlog,like, unlike, upload} = require('../controllers/blog');
+const { create, getMyblog, getAll, getById, editById, deleteById, getByTitle, getByTag, createBlog,like, unlike, addComment,upload} = require('../controllers/blog');
 const router = express.Router();
 //const multer = require('multer');
+//const path = require('path');
 
 const cloudinary = require('../utils/cloudinary');
 const upload = require('../utils/multer');
 
-//const path = require('path');
+
 
 router.post('/addimg', upload.single('photo'), async(req, res, next)=>{
     // const { body, user: { id } } = req;
@@ -16,7 +17,13 @@ router.post('/addimg', upload.single('photo'), async(req, res, next)=>{
  
         //create new blog
         const blog = await upload({...body, tags: tags, photo: result.secure_url, cloudinary_id: result.public_id, author:id});
-       await blog.save();
+        // let blog = new blog({
+        //     tags: tags,
+        //     photo: result.secure_url,
+        //     cloudinary_id: result.public_id,
+        //     author:id
+        // })
+       //await blog.save();
         res.json(blog);
     }catch(e){
         next (e);
@@ -170,5 +177,16 @@ router.post('/unlike/:lid', async(req, res, next)=>{
 //         next(e);
 //     }
 // });
+
+router.post('/comment', auth, async (req, res, next) => {
+    const { body} = req;
+
+    try {
+        const comment = await addComment(body);
+        res.json(comment);
+    } catch (e) {
+        next(e);
+    }
+});
 
 module.exports = router;

@@ -52,6 +52,9 @@ const unlike = (id, lid) => {
 
 // const addComment=(body, id, blogId) =>Blog.updateOne( {_id : blogId},{ $addToSet: {comments: { commentId: author, comment: comment } } },{ new: true, useFindAndModify: false }).exec();
 
+const addComment = (body)=>{
+    return Blog.create(body);
+}
 
 module.exports = {
     upload,
@@ -65,5 +68,6 @@ module.exports = {
     getByTitle,
     getByTag,
     like,
-    unlike
+    unlike,
+    addComment
 }
