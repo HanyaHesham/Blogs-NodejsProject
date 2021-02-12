@@ -61,6 +61,10 @@ const pullfollowID = (id, targetId) =>{
     return {"status":"unfollowed"};
 }
 
+const searchUser = (username)=>{
+    return User.find({username}).exec();
+}
+
 module.exports ={
     create,
     login,
@@ -70,4 +74,5 @@ module.exports ={
     deleteById,
     pushfollowID,
     pullfollowID,
+    searchUser
 };

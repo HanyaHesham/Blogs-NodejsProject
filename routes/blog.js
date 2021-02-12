@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, getMyblog, getAll, getById, editById, deleteById, getByTitle, getByTag, createBlog, like, unlike, addComment} = require('../controllers/blog');
+const { create, getMyblog, getAll, getById, editById, deleteById, getByTitle, getByTag, createBlog,like, unlike} = require('../controllers/blog');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
@@ -142,14 +142,14 @@ router.post('/unlike/:lid', async(req, res, next)=>{
 });
 
 //add Comment
-router.post('/comment/:blogId', async(req, res, next)=>{
-    const {body, user: { id }, params:{ blogId }} = req;
-    try{
-        const comment = await addComment(body, id, blogId);
-        res.json(comment);
-    } catch (e) {
-        next(e);
-    }
-});
+// router.post('/comment/:blogId', async(req, res, next)=>{
+//     const {body, user: { id }, params:{ blogId }} = req;
+//     try{
+//         const comment = await addComment(body, id, blogId);
+//         res.json(comment);
+//     } catch (e) {
+//         next(e);
+//     }
+// });
 
 module.exports = router;

@@ -20,6 +20,35 @@ const blogSchema = new Schema({
         ref: 'User'
     },
     comment:[String],
+
+    // comments: [{
+    //     commentId: {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'User'
+    //     },
+    //     comment: {
+    //         type: String,
+    //         maxlength: 500         
+    //     },
+    //     createdAt: {
+    //         type: Date,
+    //         default: Date.now
+    //     },
+    //     reply: [{
+    //         replyId: {
+    //             type: Schema.Types.ObjectId,
+    //             ref: 'User'
+    //         },
+    //         reply: {
+    //             type: String,
+    //             maxlength: 500
+    //         },
+    //         createdAt: {
+    //             type: Date,
+    //             default: Date.now()
+    //         },
+    //     }],
+    // }],
     
     photo: String,
     createdAt: {

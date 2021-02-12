@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, login, getAll, getById, editById, deleteById, pushfollowID,pullfollowID} = require('../controllers/user');
+const { create, login, getAll, getById, editById, deleteById, pushfollowID,pullfollowID, searchUser} = require('../controllers/user');
 const authMiddleware = require('../middlewares/auth');
 
 const router = express.Router();
@@ -58,8 +58,8 @@ router.patch('/edit', authMiddleware,async (req, res, next) => {
   }
 });
 
-//delete user
 
+//delete user
   router.delete('/delete', authMiddleware, async (req, res, next)=>{
 
     const { user: { id } } = req;
@@ -90,6 +90,17 @@ router.post('/unfollow/:fid',authMiddleware ,async(req, res, next)=>{
   try{
     const userFollowID = await pullfollowID(id, fid);
     res.json(userFollowID);
+  }catch (e){
+    next(e);
+  }
+});
+
+//search user by username
+router.get('/username/:username',authMiddleware, async(req, res, next)=>{
+  username=req.params.username;
+  try{
+    const user = await searchUser(username);
+    res.json(user);
   }catch (e){
     next(e);
   }

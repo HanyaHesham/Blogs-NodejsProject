@@ -38,6 +38,7 @@ const getByTag=(tags) =>{
     return Blog.find({tags}).exec();
 }
 
+
 const like = (id, lid) => Blog.findByIdAndUpdate( lid, { $push: { likes:id } },{ new: true, useFindAndModify: false }).exec();
 
 const unlike = (id, lid) => {
@@ -45,7 +46,7 @@ const unlike = (id, lid) => {
     return {"status":"unliked"};
 }
 
-const addComment=(body, id, blogId) =>Blog.findByIdAndUpdate( {"_id":blogId},{$push:{comment:body}},{ new: true, useFindAndModify: false }).exec();
+// const addComment=(body, id, blogId) =>Blog.updateOne( {_id : blogId},{ $addToSet: {comments: { commentId: author, comment: comment } } },{ new: true, useFindAndModify: false }).exec();
 
 
 module.exports = {
@@ -59,6 +60,5 @@ module.exports = {
     getByTitle,
     getByTag,
     like,
-    unlike,
-    addComment
+    unlike
 }
