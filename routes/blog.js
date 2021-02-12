@@ -16,7 +16,7 @@ router.post('/addimg', upload.single('photo'), async(req, res, next)=>{
  
         //create new blog
         const blog = await upload({...body, tags: tags, photo: result.secure_url, cloudinary_id: result.public_id, author:id});
-       // await blog.save();
+       await blog.save();
         res.json(blog);
     }catch(e){
         next (e);
