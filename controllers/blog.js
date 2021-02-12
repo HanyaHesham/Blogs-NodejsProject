@@ -52,8 +52,10 @@ const unlike = (id, lid) => {
 
 // const addComment=(body, id, blogId) =>Blog.updateOne( {_id : blogId},{ $addToSet: {comments: { commentId: author, comment: comment } } },{ new: true, useFindAndModify: false }).exec();
 
-const addComment = (id,body) =>Blog.updateOne({​​​​_id:id}​​​​,{​​​​$addToSet:body}​​​​,{​​​​new:true}​​​​).exec()
 
+const addComment = (id, body)=>{
+    return Blog.updateOne({_id: id}, {$addToSet: body}, {new: true}).exec();
+}
 module.exports = {
     uploadImg,
     createBlog, 
