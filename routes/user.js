@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, login, getAll, getById, editById, deleteById, pushfollowID,pullfollowID, searchUser} = require('../controllers/user');
+const { create, login, getAll, getById, editById, deleteById, pushfollowID,pullfollowID, searchUser, searchFname} = require('../controllers/user');
 const authMiddleware = require('../middlewares/auth');
 
 const router = express.Router();
@@ -101,6 +101,17 @@ router.get('/username/:username',authMiddleware, async(req, res, next)=>{
   try{
     const user = await searchUser(username);
     res.json(user);
+  }catch (e){
+    next(e);
+  }
+});
+
+//search user first name
+router.get('/userFname/:firstName',authMiddleware, async(req, res, next)=>{
+  firstName=req.params.firstName;
+  try{
+    const userFname = await searchFname(firstName);
+    res.json(userFname);
   }catch (e){
     next(e);
   }

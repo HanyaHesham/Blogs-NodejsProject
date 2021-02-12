@@ -65,6 +65,10 @@ const searchUser = (username)=>{
     return User.find({username}).exec();
 }
 
+const searchFname = (firstName)=>{
+    return User.find({firstName}).exec();
+}
+
 module.exports ={
     create,
     login,
@@ -74,5 +78,6 @@ module.exports ={
     deleteById,
     pushfollowID,
     pullfollowID,
-    searchUser
+    searchUser,
+    searchFname
 };
