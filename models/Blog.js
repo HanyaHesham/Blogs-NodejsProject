@@ -3,6 +3,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const blogSchema = new Schema({
+
+    cloudinary_id:{
+        type: String
+    },
+
     title:{
         type: String,
         maxlength: 256,

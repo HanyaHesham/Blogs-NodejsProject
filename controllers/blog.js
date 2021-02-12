@@ -1,5 +1,9 @@
 const Blog = require('../models/Blog');
 
+const upload = (blog)=>{
+    return Blog.create(blog);
+}
+
 const create = (blog)=>{
    return Blog.create(blog);
 };
@@ -50,6 +54,7 @@ const unlike = (id, lid) => {
 
 
 module.exports = {
+    upload,
     create,
     createBlog, 
     getMyblog,

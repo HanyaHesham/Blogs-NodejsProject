@@ -1,31 +1,49 @@
 const express = require('express');
-const { create, getMyblog, getAll, getById, editById, deleteById, getByTitle, getByTag, createBlog,like, unlike} = require('../controllers/blog');
+const { create, getMyblog, getAll, getById, editById, deleteById, getByTitle, getByTag, createBlog,like, unlike, upload} = require('../controllers/blog');
 const router = express.Router();
-const multer = require('multer');
+//const multer = require('multer');
+
+const cloudinary = require('../utils/cloudinary');
+const multer = require('../utils/multer');
+
 const path = require('path');
 
-
-const storage = multer.diskStorage({
-    destination: function(req, file, cb){
-        cb(null, 'uploads/');
-    },
-    filename:function(req, file, cb){
-        cb(null, file.originalname + '-' + Date.now() + path.extname(file.originalname));
+router.post('/addimg', upload.single('photo'), async(req, res, next)=>{
+    try{
+        //upload image to cloudinary
+        const result = await cloudinary.uploader.upload(req.file.path);
+ 
+        //create new blog
+        const blog = await upload({...body, tags: tags, photo: result.secure_url, cloudinary_id: result.public_id, author:id});
+       // await blog.save();
+        res.json(blog);
+    }catch(e){
+        next (e);
     }
 });
-const upload= multer ({ storage: storage });
+
+
+// const storage = multer.diskStorage({
+//     destination: function(req, file, cb){
+//         cb(null, 'uploads/');
+//     },
+//     filename:function(req, file, cb){
+//         cb(null, file.originalname + '-' + Date.now() + path.extname(file.originalname));
+//     }
+// });
+// const upload= multer ({ storage: storage });
 
 //create new blog with photo
-router.post('/addphoto',upload.single('photo') ,async (req, res, next)=>{
-    const { body, user: { id } } = req;
-    const _file = req.file.filename;
-    try{
-        const blog = await create({ ...body, photo:_file ,author: id });
-        res.json(blog);
-    } catch(e){
-        next (e); //sending error handler
-    } 
-});
+// router.post('/addphoto',upload.single('photo') ,async (req, res, next)=>{
+//     const { body, user: { id } } = req;
+//     const _file = req.file.filename;
+//     try{
+//         const blog = await create({ ...body, photo:_file ,author: id });
+//         res.json(blog);
+//     } catch(e){
+//         next (e); //sending error handler
+//     } 
+// });
 
 //create new blog without photo
 router.post('/addblog', async (req, res, next)=>{
