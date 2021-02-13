@@ -13,8 +13,11 @@ const createBlog = (blog) =>{
 }
 
 
+// const getMyblog = (query) => {
+//     return Blog.find(query).exec();
+// }
 const getMyblog = (query) => {
-    return Blog.find(query).exec();
+    return Blog.find(query).sort({ createdAt: 'desc'}).populate('author').exec();
 }
 
 // const getAll = () => {
