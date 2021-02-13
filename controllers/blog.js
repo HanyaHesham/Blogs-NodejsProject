@@ -22,7 +22,7 @@ const getMyblog = (query) => {
 // }
 
 const getAll = () => {
-    return Blog.find().sort({ createdAt: 'desc'}).populate('author').exec();
+    return Blog.find({}).sort({ createdAt: 'desc'}).populate('author').exec();
 }
 
 const getById = (id) => {
