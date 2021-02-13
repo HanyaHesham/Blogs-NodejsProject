@@ -17,8 +17,12 @@ const getMyblog = (query) => {
     return Blog.find(query).exec();
 }
 
+// const getAll = () => {
+//     return Blog.find({}).exec();
+// }
+
 const getAll = () => {
-    return Blog.find({}).exec();
+    return Blog.find().sort({ createdAt: 'desc'}).populate('author').exec();
 }
 
 const getById = (id) => {
