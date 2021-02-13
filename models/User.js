@@ -32,13 +32,13 @@ const userSchema = new Schema({
     },
 
     followers:[{
-       type: Schema.Types.ObjectId,
-        ref: 'User'
+       type: String,
+        //ref: 'User'
       }],
 
     following:[{ 
-       type: Schema.Types.ObjectId, 
-        ref: 'User'
+       type: String, 
+        //ref: 'User'
       }],
     dob: Date,
 },

@@ -75,9 +75,9 @@ router.patch('/edit', authMiddleware,async (req, res, next) => {
 
 //follow user
 router.post('/follow/:fid',authMiddleware ,async(req, res, next)=>{
-  const {user: { id }, params:{ fid }} = req;
+  const {user: { username }, params:{ fid }} = req;
   try{
-    const userFollowID = await pushfollowID(id, fid);
+    const userFollowID = await pushfollowID(username, fid);
     res.json(userFollowID);
   }catch (e){
     next(e);
@@ -86,9 +86,9 @@ router.post('/follow/:fid',authMiddleware ,async(req, res, next)=>{
 
 //unfollow user
 router.post('/unfollow/:fid',authMiddleware ,async(req, res, next)=>{
-  const {user: { id }, params:{ fid }} = req;
+  const {user: { username }, params:{ fid }} = req;
   try{
-    const userFollowID = await pullfollowID(id, fid);
+    const userFollowID = await pullfollowID(username, fid);
     res.json(userFollowID);
   }catch (e){
     next(e);

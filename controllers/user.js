@@ -44,20 +44,20 @@ const deleteById = (id) => {
     return User.findByIdAndDelete(id).exec();
 }
 
-const pushfollowID = async (id, targetId) =>{
-    const loggedUser = await User.findById(id).exec();
-    if(targetId != id && !loggedUser.following.find(item => item == targetId)){
-        User.updateOne({_id:id}, {$push :{following: targetId}}, {new:true}).exec();
-        User.updateOne({_id:targetId}, {$push: { followers: id}}, {new:true}).exec();
+const pushfollowID = async (username, targetId) =>{
+    const loggedUser = await User.findOne({username}).exec();
+    if(targetId != username && !loggedUser.following.find(item => item == targetId)){
+        User.updateOne({username}, {$push :{following: targetId}}, {new:true}).exec();
+        User.updateOne({username:targetId}, {$push: { followers: username}}, {new:true}).exec();
         return {"status":"followed"};
     }else{
         throw new Error("ID_invalid");
     }
 }
 
-const pullfollowID = (id, targetId) =>{
-    User.updateOne({_id:id}, {$pull :{following: targetId}}, {new:true}).exec();
-    User.updateOne({_id:targetId}, {$pull: { followers: id}}, {new:true}).exec();
+const pullfollowID = (username, targetId) =>{
+    User.updateOne({username}, {$pull :{following: targetId}}, {new:true}).exec();
+    User.updateOne({username:targetId}, {$pull: { followers: username}}, {new:true}).exec();
     return {"status":"unfollowed"};
 }
 
