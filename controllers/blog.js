@@ -64,8 +64,11 @@ const addComment = (id, body)=>{
     return Blog.updateOne({_id: id}, {$addToSet: body}, {new: true}).exec();
 }
 
-const getBlogsByAuthor=(author) =>{
-    return Blog.find({author}).exec();
+// const getBlogsByAuthor=(author) =>{
+//     return Blog.find({author}).exec();
+// }
+const getBlogsByAuthor = (author) => {
+    return Blog.find(author).sort({ createdAt: 'desc'}).populate('author').exec();
 }
 
 
