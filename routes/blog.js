@@ -1,5 +1,5 @@
 const express = require('express');
-const { getMyblog, getAll, getById, editById, deleteById, getByTitle, getByTag, createBlog,like, unlike, addComment,uploadImg} = require('../controllers/blog');
+const { getMyblog, getAll, getById, editById, deleteById, getByTitle, getByTag, createBlog,like, unlike, addComment,uploadImg, getBlogsByAuthor} = require('../controllers/blog');
 const router = express.Router();
 //const multer = require('multer');
 //const path = require('path');
@@ -171,15 +171,14 @@ router.patch('/comment/:id', async(req, res, next)=>{
     }
 });
 
-// router.post('/comment', async (req, res, next) => {
-//     const { body} = req;
-
-//     try {
-//         const comment = await addComment(body);
-//         res.json(comment);
-//     } catch (e) {
-//         next(e);
-//     }
-// });
-
+//get blog by author
+router.get('/blog/:author',async (req, res, next)=>{
+    author=req.params.author;
+    try{
+        const blog = await getBlogsByAuthor(author);
+        res.json(blog);
+    } catch (e) {
+        next(e);
+    }
+});
 module.exports = router;
